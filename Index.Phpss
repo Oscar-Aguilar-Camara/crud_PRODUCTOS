@@ -1,0 +1,112 @@
+<?php
+include_once 'crud.php';
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>CRUD</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <meta http-equiv="Content-Type" content="text/html"; charset="utf-8" />
+  
+</head> 
+
+<body>
+<div class="container-fluid ">
+  
+   <h1 class="text-center">Ejemplo de CRUD con PHP</h1>
+  
+	<form method="post">
+	   <div class="form-group">
+	   	  <label class="control-label" for="fn">Nombre(s):</label>
+	      <div class="col bg-info">
+	        <input type="text" class="form-control text-uppercase" id='fn' name="fn" placeholder="Nombre(s)"
+	          value="<?php
+	          			 if(isset($_GET['editar']))
+	          			 	 echo $getROW['fn'];  
+	          		?>" />
+	      </div>
+	   </div>
+
+	   <div class="form-group">
+	      <label class="control-label" for="ln">Apellido(s):</label>
+	      <div class="col">
+	         <input type="text" class="form-control text-uppercase" name="ln" placeholder="Apellido(s)"
+	         value="<?php if(isset($_GET['editar'])) echo $getROW['ln'];  ?>" />
+	      </div>
+	   </div>
+	   <div class="form-group">
+	      <label class="control-label" for="dir">Dirección:</label>
+	      <div class="col">
+	         <input type="text" class="form-control text-uppercase" name="dir" placeholder="Dirección"
+	         value="<?php if(isset($_GET['editar'])) echo $getROW['direccion'];  ?>" />
+	      </div>
+	   </div>
+	   <div class="form-group">	      
+		    <?php
+		     if(isset($_GET['editar']))
+		      {
+		    ?>
+		    <div class="col-12">
+	         <button type="submit" class="btn btn-primary" name="actualizar">Actualizar</button>
+	        </div>
+			 <?php
+			}
+			else
+			{
+			 ?>
+			 <div class="col-12">			 
+			 	<button type="submit" class="btn btn-primary" name="guardar">Guardar</button>
+			 </div>
+			 <?php
+			}
+			?>	      
+	   </div>
+	</form>
+
+	<h3>Listado de Clientes</h3>
+
+	<table class="table table-hover table-bordered shadow p-3 mb-5 bg-white rounded">
+		<tr>
+		    <th>Id</th>
+		    <th>Nombre(s)</th>
+		    <th>Apellido(s)</th>
+		    <th>Dirección</th>
+		    <th></th>
+		   
+		 </tr>
+		<?php
+
+		$res = $MySQLiconn->query("SELECT * FROM data");
+		while($row=$res->fetch_array())
+		{
+		 ?>
+		    <tr>
+			    <td><?php echo $row['id']; ?></td>
+			    <td><?php echo $row['fn']; ?></td>
+			    <td><?php echo $row['ln']; ?></td>
+			    <td><?php echo $row['direccion']; ?></td>
+			    <td>
+			    	<a href="?editar=<?php
+			    	 echo $row['id'];
+			    	  ?>" onclick="return confirm('¿Deseas Editarlo ?'); ">
+
+			    		<span class="glyphicon  glyphicon glyphicon-pencil"></span>
+
+			    	</a>
+
+			    	<a href="?eliminar=<?php echo $row['id']; ?>" onclick="return confirm('¿Seguro deseas eliminarlo?'); ">
+			    		<span class="glyphicon  glyphicon glyphicon-trash"></span>
+					</a>
+				</td> 
+		    </tr>
+		    <?php
+		}
+		?>
+	</table>
+  
+</div>
+</body>
+</html>
