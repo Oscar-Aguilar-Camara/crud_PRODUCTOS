@@ -46,24 +46,9 @@ include_once 'Crud.php';
       </div>
    </div>
 
-   <div class="container">
-      <div class="row">
-         <div class="col">
-         </div>
-         <div class="col">
-         </div>
-         <div class="col">
-         </div>
-         <div class="col">
-            <button id="show" class="btn btn-outline-primary" name="insert">Insertar</button>
 
-            <button id="edit" class="btn btn-outline-primary" name="edit">Editar</button>
+         <button id="show" class="btn btn-outline-primary" name="insert">Insertar</button>
 
-            <button id="borrar" class="btn btn-outline-primary" name="delete">Eliminar</button>
-
-         </div>
-      </div>
-   </div>
 
    <div class="container-fluid ">
       <div id="formulario">
