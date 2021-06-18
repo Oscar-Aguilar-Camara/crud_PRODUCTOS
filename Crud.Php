@@ -15,13 +15,10 @@ if (isset($_POST['guardar'])) {
   $per = $MySQLiconn->real_escape_string($_POST['per']);
   $idAbasto = $MySQLiconn->real_escape_string($_POST['idAbasto']);
 
-  if ($descr == NULL) {
-    $SQL = $MySQLiconn->query("INSERT INTO `productos`(`idProductos`, `nombre`, `descripcion`, `fIngreso`, `fCaducidad`, `fSalida`, `cantidad`, `perecedero`, `Abasto_idAbasto`)  
-    VALUES(NULL,'$productname',NULL,'$Fingreso','$Fcad',NULL,'$Cant','$per','$idAbasto')");
-  } else {
-    $SQL = $MySQLiconn->query("INSERT INTO `productos`(`idProductos`, `nombre`, `descripcion`, `fIngreso`, `fCaducidad`, `fSalida`, `cantidad`, `perecedero`, `Abasto_idAbasto`)  
+
+  $SQL = $MySQLiconn->query("INSERT INTO productos(idProductos, nombre, descripcion, fIngreso, fCaducidad, fSalida, cantidad, perecedero, Abasto_idAbasto)  
     VALUES(NULL,'$productname','$descr','$Fingreso','$Fcad',NULL,'$Cant','$per','$idAbasto')");
-  }
+
 
   if (!$SQL) {
     echo $MySQLiconn->error;
@@ -46,12 +43,24 @@ if (isset($_GET['editar'])) {
 if (isset($_POST['actualizar'])) {
 
     $SQL = $MySQLiconn->query(
-      "UPDATE `productos` SET `nombre` =($_POST[productname]), `descripcion` = ($_POST[descr]), 
-      `fIngreso` =($_POST[Fingreso]) , `fCaducidad` = ($_POST[Fcad]), `fSalida` = NULL, 
-      `cantidad` = ($_POST[Cant]), `perecedero` = ($_POST[per]),`Abasto_idAbasto`=($_POST[idAbasto])
-       WHERE `productos`.`idProductos` ="
+    "UPDATE productos SET nombre='"
+      . $_POST['productname']
+      . "', descripcion='"
+      . $_POST['descr']
+      . "',fIngreso='"
+      . $_POST['Fingreso']
+      . "',fCaducidad='"
+      . $_POST['Fcad']
+      . "',fSalida='"
+      . $_POST['Fsal']
+      . "',cantidad='"
+      . $_POST['Cant']
+      . "',perecedero='"
+      . $_POST['per']
+      . "',Abasto_idAbasto='"
+      . $_POST['idAbasto']
+      . "' WHERE idProductos="
       . $_GET['editar']
-    );
- 
+  );
   header("Location:index.php");
 }
