@@ -79,8 +79,8 @@ include_once 'crudPersonal.php';
                </div>
 
                <div class="form-group col-md-2">
-                  <label class="control-label" for="contrasena">Contraseña:</label>
-                  <input type="text" class="form-control" name="contrasena" placeholder="Contraseña" value="<?php if (isset($_GET['editar'])) echo $getROW['contrasena'];  ?>" />
+                  <label class="control-label" for="contraseña">Contraseña:</label>
+                  <input type="text" class="form-control" name="contraseña" placeholder="Contraseña" value="<?php if (isset($_GET['editar'])) echo $getROW['contraseña'];  ?>" />
                </div>
             </div>
 
@@ -110,7 +110,6 @@ include_once 'crudPersonal.php';
             <th>Editar</th>
             <th>Eliminar</th>
             <th>ID</th>
-            <th>Rango</th>
             <th>Nombre(s)</th>
             <th>Apellido paterno</th>
             <th>Apellido materno</th>
@@ -139,7 +138,6 @@ include_once 'crudPersonal.php';
                <td> <?php echo $row[3]; ?> </td>
                <td> <?php echo $row[4]; ?> </td>
                <td> <?php echo $row[5]; ?> </td>
-               <td> <?php echo $row[6]; ?> </td>
             </tr>
          <?php
          }

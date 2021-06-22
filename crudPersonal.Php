@@ -10,10 +10,10 @@ if (isset($_POST['guardar'])) {
   $apellidoP = $MySQLiconn->real_escape_string($_POST['apellidoP']);
   $apellidoM = $MySQLiconn->real_escape_string($_POST['apellidoM']);
   $email = $MySQLiconn->real_escape_string($_POST['email']);
-  $contraseña = $MySQLiconn->real_escape_string($_POST['contrasena']);
+  $contraseña = $MySQLiconn->real_escape_string($_POST['contraseña']);
  
-  $SQL = $MySQLiconn->query("INSERT INTO personal(idPersonal, rango, nombre, apellidoP, apellidoM, email, contraseña)  
-    VALUES(NULL,NULL,'$nombre','$apellidoP','$apellidoM','$email','$contrasena')");
+  $SQL = $MySQLiconn->query("INSERT INTO personal(idPersonal, nombre, apellidoP, apellidoM, email, contraseña)  
+    VALUES(NULL,'$nombre','$apellidoP','$apellidoM','$email','$contraseña')");
 
 
   if (!$SQL) {
@@ -47,8 +47,8 @@ if (isset($_POST['actualizar'])) {
       . $_POST['apellidoM']
       . "',email='"
       . $_POST['email']
-      . "',contrasena='"
-      . $_POST['contrasena']
+      . "',contraseña='"
+      . $_POST['contraseña']
       . "' WHERE idPersonal="
       . $_GET['editar']
   );
